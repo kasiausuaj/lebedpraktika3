@@ -66,13 +66,19 @@
                   <button class="btn-edit" @click="editCard(card)">Edit</button>
                   <span class="timestamp">{{ card.lastEdited }}</span>
                 </div>
-
+                <button class="move-complete-btn" @click="moveToCompleted(card)">Move to Completed</button>
+                <button class="ReturnToProgressBtn" v-if="!card.returnReason" @click="returnToProgress(card)">Вернуть</button>
               </div>
             </div>
           </div>
           <div class="column">
             <h2>Выполненные задачи</h2>
-
+            <div class="cards">
+              <div v-for="card in completedTasks" :key="card.id" class="card">
+                <div class="card-content" :class="{ 'completed': card.completed, 'expired': isDeadlineExpired(card.deadline) }">
+                  <h3>{{ card.title }}</h3>
+                  <p>{{ card.description }}</p>
+                  <p>Deadline: {{ card.deadline }}</p>
                 </div>
               </div>
             </div>
