@@ -42,19 +42,7 @@ new Vue({
           console.log('Ошибка! Неправильная дата.');
         }
       },
-      editCard(card) {
-        const newTitle = prompt('Введите новое название',   card.title);
-        if (newTitle) {
-            card.title = newTitle;
-          }
-    
-          const newDescription = prompt('Введите новое описание', card.description);
-          if (newDescription) {
-            card.description = newDescription;
-          }
-    
-          card.lastEdited = new Date().toLocaleString();
-        },
+
         deleteCard(card) {
           const confirmDelete = confirm('Вы уверены, что хотите удалить карточку?');
           if (confirmDelete) {
@@ -69,5 +57,13 @@ new Vue({
             }
           }
         },
+        moveToInProgress(card) {
+            this.plannedTasks.splice(this.plannedTasks.indexOf(card), 1);
+            this.inProgressTasks.push(card);
+          },
+          moveToTesting(card) {
+            this.inProgressTasks.splice(this.inProgressTasks.indexOf(card), 1);
+            this.testingTasks.push(card);
+          },
     }
 })

@@ -54,6 +54,23 @@
               </div>
             </div>
           </div>
+          <div class="column">
+            <h2>Тестирование</h2>
+            <div class="cards">
+              <div v-for="card in testingTasks" :key="card.id" class="card">
+    
+                <div class="card-content">
+                  <h3>{{ card.title }}</h3>
+                  <p>{{ card.description }}</p>
+                  <p>Deadline: {{ card.deadline }}</p>
+
+                </div>
+                <button class="move-complete-btn" @click="moveToCompleted(card)">Move to Completed</button>
+                <button class="ReturnToProgressBtn" v-if="!card.returnReason" @click="returnToProgress(card)">Вернуть</button>
+              </div>
+            </div>
+          </div>
+    
     
 </body>
 </html>
