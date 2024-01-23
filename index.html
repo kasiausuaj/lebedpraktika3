@@ -28,6 +28,12 @@
                 <button class="move-work-btn" @click="moveToInProgress(card)">Move to In Progress</button>
               </div>
             </div>
+            <form @submit.prevent="addCard">
+              <input v-model="newCardTitle" placeholder="Title" required>
+              <input v-model="newCardDescription" placeholder="Description" required>
+              <input type="date" v-model="newCardDeadline" @change="validateDate" required>
+              <button class="create-card-btn" type="submit">Create Card</button>
+            </form>
         </div>
         <div class="column">
             <h2>Задачи в работе</h2>
