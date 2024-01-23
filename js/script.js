@@ -94,6 +94,20 @@ new Vue({
                 this.inProgressTasks.push(card);
               }
             },
+            isDeadlineExpired(date) {
+                const deadline = new Date(date);
+                const today = new Date();
+                return deadline < today;
+              },
+              saveTasksToStorage() {
+                const tasks = {
+                  plannedTasks: this.plannedTasks,
+                  inProgressTasks: this.inProgressTasks,
+                  testingTasks: this.testingTasks,
+                  completedTasks: this.completedTasks
+                };
+                localStorage.setItem('kanbanTasks', JSON.stringify(tasks));
+              },
           
     }
 })

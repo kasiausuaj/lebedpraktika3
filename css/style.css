@@ -101,4 +101,30 @@ body {
     border: none;
     cursor: pointer;
   }
+  .move-work-btn {
+    background-color: #2979ff;
+  }
+  
+  .move-complete-btn {
+    background-color: #4caf50;
+  }
+  
+  .return-to-progress-btn {
+    background-color: #ff9800;
+  }
+  
+  .completed {
+    background-color: #e0f2f1;
+    border: 1px solid #b2dfdb;
+  }
+  
+  .expired {
+    background-color: #ffebee;
+    border: 1px solid #ef9a9a;
+  }
+  
+  form {
+    margin-top: 10px;
+  }
+  
   
