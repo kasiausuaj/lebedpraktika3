@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/vue.js" defer></script>
+    <script src="./js/script.js" defer></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Kanban-Board</title>
+</head>
+<body>
+    <div id="app">
+        <div class="board">
+          <div class="column">
+            <h2>Запланированные задачи</h2>
+            <div class="cards">
+              <div v-for="card in plannedTasks" :key="card.id" class="card">
+                <div class="card-header">
+                  <button class="btn-edit" @click="editCard(card)">Edit</button>
+                  <button class="btn-delete" @click="deleteCard(card)">Delete</button>
+                  <span class="timestamp">{{ card.lastEdited }}</span>
+                </div>
+                <div class="card-content">
+                  <h3>{{ card.title }}</h3>
+                  <p>{{ card.description }}</p>
+                  <p>Deadline: {{ card.deadline }}</p>
+                </div>
+                <button class="move-work-btn" @click="moveToInProgress(card)">Move to In Progress</button>
+              </div>
+            </div>
+            <form @submit.prevent="addCard">
+              <input v-model="newCardTitle" placeholder="Title" required>
+              <input v-model="newCardDescription" placeholder="Description" required>
+              <input type="date" v-model="newCardDeadline" @change="validateDate" required>
+              <button class="create-card-btn" type="submit">Create Card</button>
+            </form>
+        </div>
+</body>
+</html>
