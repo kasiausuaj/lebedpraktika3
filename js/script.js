@@ -42,22 +42,34 @@ new Vue({
           console.log('Ошибка! Неправильная дата.');
         }
       },
-
-        deleteCard(card) {
-          const confirmDelete = confirm('Вы уверены, что хотите удалить карточку?');
-          if (confirmDelete) {
-            if (this.plannedTasks.includes(card)) {
-              this.plannedTasks.splice(this.plannedTasks.indexOf(card), 1);
-            } else if (this.inProgressTasks.includes(card)) {
-              this.inProgressTasks.splice(this.inProgressTasks.indexOf(card), 1);
-            } else if (this.testingTasks.includes(card)) {
-              this.testingTasks.splice(this.testingTasks.indexOf(card), 1);
-            } else if (this.completedTasks.includes(card)) {
-              this.completedTasks.splice(this.completedTasks.indexOf(card), 1);
-            }
+      editCard(card) {
+        const newTitle = prompt('Введите новое название',   card.title);
+        if (newTitle) {
+            card.title = newTitle;
           }
+    
+          const newDescription = prompt('Введите новое описание', card.description);
+          if (newDescription) {
+            card.description = newDescription;
+          }
+    
+          card.lastEdited = new Date().toLocaleString();
         },
-        moveToInProgress(card) {
+        deleteCard(card) {
+            const confirmDelete = confirm('Вы уверены, что хотите удалить карточку?');
+            if (confirmDelete) {
+              if (this.plannedTasks.includes(card)) {
+                this.plannedTasks.splice(this.plannedTasks.indexOf(card), 1);
+              } else if (this.inProgressTasks.includes(card)) {
+                this.inProgressTasks.splice(this.inProgressTasks.indexOf(card), 1);
+              } else if (this.testingTasks.includes(card)) {
+                this.testingTasks.splice(this.testingTasks.indexOf(card), 1);
+              } else if (this.completedTasks.includes(card)) {
+                this.completedTasks.splice(this.completedTasks.indexOf(card), 1);
+              }
+            }
+          },
+          moveToInProgress(card) {
             this.plannedTasks.splice(this.plannedTasks.indexOf(card), 1);
             this.inProgressTasks.push(card);
           },
@@ -65,5 +77,23 @@ new Vue({
             this.inProgressTasks.splice(this.inProgressTasks.indexOf(card), 1);
             this.testingTasks.push(card);
           },
+          moveToCompleted(card) {
+            this.testingTasks.splice(this.testingTasks.indexOf(card), 1);
+            this.completedTasks.push(card);
+            card.completed = true;
+          },
+          returnToProgress(card) {
+              const returnReason = prompt('Введите причину возврата', '');
+              if (returnReason) {
+                card.returnReason = returnReason;
+                if (this.testingTasks.includes(card)) {
+                  this.testingTasks.splice(this.testingTasks.indexOf(card), 1);
+                } else if (this.completedTasks.includes(card)) {
+                  this.completedTasks.splice(this.completedTasks.indexOf(card), 1);
+                }
+                this.inProgressTasks.push(card);
+              }
+            },
+          
     }
 })
