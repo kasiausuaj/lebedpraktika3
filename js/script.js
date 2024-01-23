@@ -94,11 +94,7 @@ new Vue({
                 this.inProgressTasks.push(card);
               }
             },
-            isDeadlineExpired(date) {
-                const deadline = new Date(date);
-                const today = new Date();
-                return deadline < today;
-              },
+
               saveTasksToStorage() {
                 const tasks = {
                   plannedTasks: this.plannedTasks,
