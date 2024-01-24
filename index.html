@@ -6,7 +6,7 @@
     <script src="./js/vue.js" defer></script>
     <script src="./js/script.js" defer></script>
     <link rel="stylesheet" href="./css/style.css">
-    <title>Kanban-Board</title>
+    <title>Канбан доска</title>
 </head>
 <body>
     <div id="app">
@@ -29,8 +29,8 @@
               </div>
             </div>
             <form @submit.prevent="addCard">
-              <input v-model="newCardTitle" placeholder="Title" required>
-              <input v-model="newCardDescription" placeholder="Description" required>
+              <input v-model="newCardTitle" placeholder="Название" required>
+              <input v-model="newCardDescription" placeholder="Описание" required>
               <input type="date" v-model="newCardDeadline" @change="validateDate" required>
               <button class="create-card-btn" type="submit">Create Card</button>
             </form>
